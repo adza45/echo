@@ -16,7 +16,7 @@ ZERO = 0
 with open('./settings.txt', 'r') as f:
     settings = f.read()
 
-while True:
+while settings != 'exit':
     
     with open('./settings.txt', 'r') as f:
         settings = f.read()
