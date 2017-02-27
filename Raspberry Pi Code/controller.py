@@ -1,4 +1,3 @@
-
 import time, requests, os, pigpio, math
 
 def cls():
@@ -14,19 +13,18 @@ BLUE = 24
 
 ZERO = 0
 
-#response = requests.get("https://192.168.1.43/test1.php", verify=True, cert=["/etc/nginx/ssl/nginx.crt"])
-response = requests.get("https://10.0.0.43/test1.php", verify=False)
+with open('./settings.txt', 'r') as f:
+    settings = f.read()
 
-while response.text != 'exit':
-#    response = requests.get('https://192.168.1.43/test1.php')
-    response = requests.get("https://10.0.0.43/test1.php", verify=False)
-
-    settings = response.text
+while True:
+    
+    with open('./settings.txt', 'r') as f:
+        settings = f.read()
     print (settings)
     print (settings[1])
     cls()
 
-    if response.text == 'exit':
+    if settings == 'exit':
         print (settings)
 
     INTENSITY = settings[0] + settings[1] + settings[2]
@@ -76,12 +74,11 @@ while response.text != 'exit':
                         BLUE_TO_RED = 0
                         RED_TO_GREEN =1
 
-        time.sleep(0.1)
+        time.sleep(0.01)
 
-#       response = requests.get('https://192.168.1.43/test1.php')
-        response = requests.get("https://10.0.0.43.43/test1.php", verify=False)
+	with open('./settings.txt', 'r') as f:
+		settings = f.read()
 
-        settings = response.text
         FADE = settings[3]
 
     print settings[3]
@@ -136,4 +133,4 @@ while response.text != 'exit':
         pi.set_PWM_dutycycle(GREEN, math.floor(int(INTENSITY)/4))
         pi.set_PWM_dutycycle(BLUE, INTENSITY)
 
-    time.sleep(0.25)
+    time.sleep(0.05)
