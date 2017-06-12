@@ -27,7 +27,7 @@ if($_GET['get'] == 1)
     }
 
     $combined = $intensity.$fade.$color;
-    file_put_contents(settings.txt', $combined);
+    file_put_contents('settings.txt', $combined);
 }
 
 ?>
